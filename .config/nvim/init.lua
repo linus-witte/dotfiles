@@ -15,5 +15,4 @@ vim.opt.smartcase = true
 
 vim.opt.cursorline = true
 
-
--- TODO: Add undo tree plugin
+vim.opt.scrolloff = 8
