@@ -11,13 +11,13 @@ Ensure the following packages are installed on your system
 
 ## Installation
 
-''' 
+``` 
 $ git clone git@github.com:LinusBene/dotfiles.git
 $ cd dotfiles
-'''
+```
 
 then use GNU stow to create symlinks
 
-'''
+```
 $ stow .
-'''
+```
