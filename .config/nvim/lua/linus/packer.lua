@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
 		}
 		use 'mbbill/undotree'
 		use 'tpope/vim-fugitive' -- Git integration
+		use 'tpope/vim-sleuth'
 		use {
 				'numToStr/Comment.nvim',
 				config = function ()
