@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install dependencies
-yay -S nvim nvim-packer-git tmux
+yay -S nvim nvim-packer-git tmux npm unzip
 
 # link files 
 stow --adopt .
