@@ -15,3 +15,9 @@ require('mason-lspconfig').setup({
 		lsp_zero.default_setup,
 	},
 })
+
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp_zero.default_keymaps ({
+	["<C-Space>"] = cmp.mapping.complete();
+})
