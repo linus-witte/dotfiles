@@ -96,6 +96,11 @@ _G.packer_plugins = {
     path = "/home/linus/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["haskell-tools.nvim"] = {
+    loaded = true,
+    path = "/home/linus/.local/share/nvim/site/pack/packer/start/haskell-tools.nvim",
+    url = "https://github.com/mrcjkb/haskell-tools.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/linus/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",

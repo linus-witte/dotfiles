@@ -89,3 +89,6 @@ alias ssh='kitten ssh'
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
+
+# add ghc to path (installed via ghcup)
+PATH="$PATH:/home/linus/.ghcup/bin"
