@@ -63,8 +63,5 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
-	use {
-		'mrcjkb/haskell-tools.nvim',
-		branch = '3.1.7',
-	}
+
 end)

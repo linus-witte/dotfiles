@@ -29,3 +29,9 @@ vim.opt.updatetime = 50
 vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
+
+vim.opt.clipboard = 'unnamedplus'
+
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true;
+
