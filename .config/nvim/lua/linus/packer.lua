@@ -49,6 +49,11 @@ return require('packer').startup(function(use)
 			require('Comment').setup()
 		end
 	}
+    -- use 'OmniSharp/omnisharp-vim'
+    -- use {
+    --     'neoclide/coc.nvim',
+    --     branch = 'release'
+    -- }
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
