@@ -1,4 +1,7 @@
-require("linus")
+require("config.lazy")
+require('config.remap')
+
+require("plugins.basics")
 
 -- enable line numbers
 vim.opt.number = true
@@ -30,8 +33,7 @@ vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
 
-vim.opt.clipboard = 'unnamedplus'
-
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true;
 
+vim.cmd.colorscheme "catppuccin"
