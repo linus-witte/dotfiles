@@ -1,8 +1,6 @@
 require("config.lazy")
 require('config.remap')
 
-require("plugins.basics")
-
 -- enable line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -37,3 +35,10 @@ vim.opt.spelllang = 'en_us'
 vim.opt.spell = true;
 
 vim.cmd.colorscheme "catppuccin"
+
+-- vim.api.nvim_create_autocmd('FileType', {
+--     pattern = 'python',
+--     callback = function(args)
+--         print ("starting python lsp")
+--     end,
+-- })

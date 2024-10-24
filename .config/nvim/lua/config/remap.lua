@@ -15,3 +15,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set('v', 'y', '"+y', { desc = 'Yank to system clipboard', noremap = true })
+vim.keymap.set('v', 'p', '"+p', { desc = 'Past from system clipboard', noremap = true })
