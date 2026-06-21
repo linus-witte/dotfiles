@@ -15,7 +15,7 @@ let
     playerctl
     pavucontrol
     xclip
-    xorg.xrandr
+    xrandr
     psmisc
     xss-lock
     pulseaudio
@@ -61,6 +61,8 @@ let
     neovim
     tmux
     tmux-sessionizer
+    lua-language-server # For the neovim config
+    bash-language-server
   ];
 
   applicationPackages = with pkgs; [
