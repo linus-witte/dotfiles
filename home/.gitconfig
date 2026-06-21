@@ -1,0 +1,48 @@
+[user]
+	email = linus.witte@proton.me
+	name = Linus Witte
+
+[core]
+	editor = nvim
+	pager = delta
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+
+[rerere]
+	enabled = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+
+[diff]
+	algorithm = histogram
+
+[push]
+	default = simple
+
+[credential]
+	helper = cache
