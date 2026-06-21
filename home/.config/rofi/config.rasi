@@ -1,0 +1,8 @@
+configuration {
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
+}
+
+@theme "Arc-Dark"

@@ -60,6 +60,7 @@ let
     codex
     neovim
     tmux
+    tmux-sessionizer
   ];
 
   applicationPackages = with pkgs; [
