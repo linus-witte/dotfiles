@@ -72,6 +72,7 @@ let
     jellyfin-desktop
     freshfetch
     unityhub
+    anki
   ];
 in
 {
