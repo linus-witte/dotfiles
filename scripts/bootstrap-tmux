@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+set -eu
+
+TMUX_PLUGIN_DIR="${TMUX_PLUGIN_DIR:-$HOME/.tmux/plugins}"
+TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
+TPM_REPO="https://github.com/tmux-plugins/tpm"
+
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required to install tmux plugins" >&2
+  exit 1
+fi
+
+mkdir -p "$TMUX_PLUGIN_DIR"
+
+if [ -d "$TPM_DIR/.git" ]; then
+  git -C "$TPM_DIR" pull --ff-only
+elif [ -e "$TPM_DIR" ]; then
+  echo "$TPM_DIR exists but is not a git checkout" >&2
+  exit 1
+else
+  git clone "$TPM_REPO" "$TPM_DIR"
+fi
+
+tmux start-server
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$TMUX_PLUGIN_DIR/"
+
+"$TPM_DIR/bin/install_plugins"
