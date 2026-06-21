@@ -62,6 +62,7 @@ let
     neovim
     tmux
     tmux-sessionizer
+    gnumake
     lua-language-server # For the neovim config
     bash-language-server
   ];
