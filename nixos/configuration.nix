@@ -17,6 +17,8 @@ let
     xclip
     xorg.xrandr
     psmisc
+    xss-lock
+    pulseaudio
   ];
 
   shellPackages = with pkgs; [
@@ -177,9 +179,5 @@ in
   };
 
   environment.systemPackages =
-    desktopPackages
-    ++ shellPackages
-    ++ networkPackages
-    ++ developmentPackages
-    ++ applicationPackages;
+    desktopPackages ++ shellPackages ++ networkPackages ++ developmentPackages ++ applicationPackages;
 }
