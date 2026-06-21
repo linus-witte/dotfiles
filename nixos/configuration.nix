@@ -71,6 +71,7 @@ let
     firefox
     jellyfin-desktop
     freshfetch
+    unityhub
   ];
 in
 {
