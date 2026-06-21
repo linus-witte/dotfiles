@@ -54,6 +54,7 @@ let
     # Project-specific compilers and runtimes belong in nix develop shells.
     git
     git-lfs
+    github-cli
     delta
     stow
     vim
