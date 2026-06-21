@@ -117,6 +117,7 @@ in
 
   # Membership in the docker group is root-equivalent.
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
