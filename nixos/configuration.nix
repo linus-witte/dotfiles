@@ -76,6 +76,7 @@ let
     freshfetch
     unityhub
     anki
+    pawn-appetit
   ];
 in
 {
