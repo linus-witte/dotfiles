@@ -26,6 +26,8 @@ let
     zsh
     fzf
     nixfmt
+    file
+    yazi
     ripgrep
     fd
     htop
