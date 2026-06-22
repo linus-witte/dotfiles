@@ -1,0 +1,9 @@
+[[mgr.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd /mnt/nas/media"
+desc = "Go to NAS media"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd /mnt/pi"
+desc = "Go to PI"
