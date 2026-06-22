@@ -71,6 +71,7 @@ let
 
   applicationPackages = with pkgs; [
     firefox
+    vlc
     jellyfin-desktop
     freshfetch
     unityhub
