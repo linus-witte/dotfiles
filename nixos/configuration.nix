@@ -82,6 +82,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./filesystems.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
