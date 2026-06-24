@@ -75,6 +75,7 @@ let
     jellyfin-desktop
     freshfetch
     unityhub
+    jetbrains.rider
     anki
     pawn-appetit
   ];
