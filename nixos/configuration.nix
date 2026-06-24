@@ -75,6 +75,7 @@ let
     jellyfin-desktop
     freshfetch
     unityhub
+    libreoffice
     jetbrains.rider
     anki
     pawn-appetit
