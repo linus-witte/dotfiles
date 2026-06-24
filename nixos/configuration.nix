@@ -76,6 +76,7 @@ let
     freshfetch
     unityhub
     libreoffice
+    discord
     jetbrains.rider
     anki
     pawn-appetit
