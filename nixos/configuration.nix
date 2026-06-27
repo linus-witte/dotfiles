@@ -7,17 +7,13 @@
 
 let
   desktopPackages = with pkgs; [
-    feh
     flameshot
     kitty
     libnotify
     networkmanagerapplet
     playerctl
     pavucontrol
-    xclip
-    xrandr
     psmisc
-    xss-lock
     pulseaudio
   ];
 
@@ -87,6 +83,8 @@ in
   imports = [
     ./hardware-configuration.nix
     ./filesystems.nix
+    ./i3.nix
+    ./hyprland.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -134,22 +132,11 @@ in
     "flakes"
   ];
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" ];
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3lock
-        i3status
-        rofi
-      ];
-    };
-    displayManager.lightdm.enable = true;
-  };
-
+  services.displayManager.sddm.enable = true;
   services.displayManager.defaultSession = "none+i3";
+
+  # Prevent systemd from auto-activating the stale GPT swap partition.
+  systemd.generators.systemd-gpt-auto-generator = "/dev/null";
 
   hardware.graphics.enable = true;
   hardware.nvidia = {
