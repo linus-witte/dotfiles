@@ -78,6 +78,7 @@ let
     anki
     pawn-appetit
     zathura
+    spotify
   ];
 in
 {
