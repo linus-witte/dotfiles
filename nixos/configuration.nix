@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgsJellyfinMediaPlayer,
   ...
 }:
 
@@ -68,7 +69,7 @@ let
   applicationPackages = with pkgs; [
     firefox
     vlc
-    jellyfin-desktop
+    pkgsJellyfinMediaPlayer.jellyfin-media-player
     freshfetch
     unityhub
     libreoffice
