@@ -80,6 +80,7 @@ let
     jetbrains.rider
     anki
     pawn-appetit
+    zathura
   ];
 in
 {
