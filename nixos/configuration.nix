@@ -104,6 +104,15 @@ in
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
+  environment.shellAliases = {
+    nrb = "sudo nixos-rebuild switch --flake path:$HOME/dotfiles/nixos#nixos";
+  };
+
   services.xserver.xkb = {
     layout = "us";
     variant = "colemak_dh";

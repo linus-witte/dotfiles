@@ -21,18 +21,10 @@ cd ~/dotfiles
 stow home
 ```
 
-After stowing `home`, the same rebuild command is available as:
+Local filesystem mounts that should not be committed belong in `nixos/filesystems.local.nix`.
+The tracked `nixos/filesystems.nix` contains a commented CIFS example and imports the local file when it exists.
 
-```sh
-nrb
-```
-
-Local filesystem mounts that should not be committed belong in
-`nixos/filesystems.local.nix`. The tracked `nixos/filesystems.nix` contains a
-commented CIFS example and imports the local file when it exists.
-
-CIFS credentials should live outside the repository, for example under
-`/etc/samba/credentials`, with root-only permissions.
+CIFS credentials should live outside the repository, for example under `/etc/samba/credentials`, with root-only permissions.
 
 Install tmux plugins after stowing `home`:
 
