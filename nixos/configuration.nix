@@ -80,6 +80,7 @@ let
     zathura
     spotify
     super-productivity
+    vscode
   ];
 in
 {
