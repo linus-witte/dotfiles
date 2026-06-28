@@ -81,6 +81,7 @@ let
     spotify
     super-productivity
     vscode
+    proton-vpn
   ];
 in
 {
