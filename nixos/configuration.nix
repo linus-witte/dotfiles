@@ -79,6 +79,7 @@ let
     pawn-appetit
     zathura
     spotify
+    super-productivity
   ];
 in
 {
