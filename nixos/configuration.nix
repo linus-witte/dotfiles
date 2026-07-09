@@ -189,6 +189,10 @@ in
   services.udisks2.enable = true;
   services.printing.enable = true;
   programs.dconf.enable = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
