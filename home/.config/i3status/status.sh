@@ -60,6 +60,17 @@ json_escape() {
     sed 's/\\/\\\\/g; s/"/\\"/g'
 }
 
+normalize_units() {
+    local line="$1"
+
+    line="${line//KiB/KB}"
+    line="${line//MiB/MB}"
+    line="${line//GiB/GB}"
+    line="${line//TiB/TB}"
+    line=$(sed -E 's/ram: ([0-9.]+) ([KMGT]B)\/([0-9.]+) \2/ram: \1\/\3 \2/g' <<< "$line")
+    printf '%s\n' "$line"
+}
+
 sleep_delay_block() {
     if [[ -r "$sleep_delay_script" ]]; then
         bash "$sleep_delay_script" status 2>/dev/null || true
@@ -67,15 +78,12 @@ sleep_delay_block() {
 }
 
 extra_blocks() {
-    local ip sleep_block
+    local sleep_block
 
-    ip=$(public_ip | json_escape)
     sleep_block=$(sleep_delay_block)
 
     if [[ -n "$sleep_block" ]]; then
-        printf '%s,{"name":"public_ip","full_text":"Public IP: %s"}' "$sleep_block" "$ip"
-    else
-        printf '{"name":"public_ip","full_text":"Public IP: %s"}' "$ip"
+        printf '%s' "$sleep_block"
     fi
 }
 
@@ -85,6 +93,11 @@ print_status_line() {
     local blocks
 
     blocks=$(extra_blocks)
+    if [[ -z "$blocks" ]]; then
+        printf '%s[%s\n' "$prefix" "$rest"
+        return
+    fi
+
     if [[ "$rest" =~ ^[[:space:]]*\] ]]; then
         printf '%s[%s%s\n' "$prefix" "$blocks" "$rest"
     else
@@ -93,6 +106,8 @@ print_status_line() {
 }
 
 i3status -c "$config" 2>/dev/null | while IFS= read -r line; do
+    line=$(normalize_units "$line")
+
     case "$line" in
         '[' | '{"version":'*)
             printf '%s\n' "$line"

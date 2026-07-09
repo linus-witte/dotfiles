@@ -67,7 +67,7 @@ status() {
 
     if remaining=$(remaining_seconds); then
         minutes=$(((remaining + 59) / 60))
-        printf '{"name":"sleep_delay","full_text":"Sleep inhibition for %sm","color":"#a3be8c"}\n' "$minutes"
+        printf '{"name":"sleep_delay","full_text":"sleep: inhibit %sm","color":"#a3be8c"}\n' "$minutes"
     fi
 }
 
