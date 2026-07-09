@@ -34,6 +34,7 @@ let
     unzip
     wget
     curl
+    dnsutils
     rsync
     jq
     inxi
@@ -64,6 +65,7 @@ let
     gnumake
     lua-language-server # For the neovim config
     bash-language-server
+    poppler-utils
   ];
 
   applicationPackages = with pkgs; [
@@ -82,6 +84,9 @@ let
     super-productivity
     vscode
     proton-vpn
+    obsidian
+    zoom-us
+    handbrake
   ];
 in
 {
