@@ -110,6 +110,12 @@ in
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "192.168.0.73" ];
+  networking.resolvconf.enable = false;
+  environment.etc."resolv.conf".text = ''
+    nameserver 192.168.0.73
+    options edns0
+  '';
   networking.firewall.enable = true;
 
   time.timeZone = "Europe/Berlin";
