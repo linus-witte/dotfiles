@@ -16,6 +16,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    dunst
     feh
     xclip
     xrandr
