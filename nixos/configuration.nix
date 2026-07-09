@@ -114,6 +114,7 @@ in
 
   environment.shellAliases = {
     nrb = "sudo nixos-rebuild switch --flake path:$HOME/dotfiles/nixos#nixos";
+    sleep-inhibit = "$HOME/.config/i3status/sleep_delay.sh prompt";
   };
 
   services.xserver.xkb = {

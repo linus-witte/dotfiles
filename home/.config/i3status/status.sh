@@ -2,6 +2,7 @@
 set -euo pipefail
 
 config="$HOME/.config/i3status/config"
+sleep_delay_script="$HOME/.config/i3status/sleep_delay.sh"
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/i3status"
 ip_cache_file="$cache_dir/public_ip"
 city_cache_file="$cache_dir/public_city"
@@ -59,24 +60,54 @@ json_escape() {
     sed 's/\\/\\\\/g; s/"/\\"/g'
 }
 
-i3status -c "$config" | while IFS= read -r line; do
+sleep_delay_block() {
+    if [[ -r "$sleep_delay_script" ]]; then
+        bash "$sleep_delay_script" status 2>/dev/null || true
+    fi
+}
+
+extra_blocks() {
+    local ip sleep_block
+
+    ip=$(public_ip | json_escape)
+    sleep_block=$(sleep_delay_block)
+
+    if [[ -n "$sleep_block" ]]; then
+        printf '%s,{"name":"public_ip","full_text":"Public IP: %s"}' "$sleep_block" "$ip"
+    else
+        printf '{"name":"public_ip","full_text":"Public IP: %s"}' "$ip"
+    fi
+}
+
+print_status_line() {
+    local prefix="$1"
+    local rest="$2"
+    local blocks
+
+    blocks=$(extra_blocks)
+    if [[ "$rest" =~ ^[[:space:]]*\] ]]; then
+        printf '%s[%s%s\n' "$prefix" "$blocks" "$rest"
+    else
+        printf '%s[%s,%s\n' "$prefix" "$blocks" "$rest"
+    fi
+}
+
+i3status -c "$config" 2>/dev/null | while IFS= read -r line; do
     case "$line" in
         '[' | '{"version":'*)
             printf '%s\n' "$line"
             ;;
         '['*)
-            ip=$(public_ip | json_escape)
             # city=$(public_city | json_escape)
             # City lookup is kept available, but not shown in the bar.
             # printf '[{"name":"public_ip","full_text":"Public IP: %s"},{"name":"public_city","full_text":"City: %s"},%s\n' "$ip" "$city" "${line:1}"
-            printf '[{"name":"public_ip","full_text":"Public IP: %s"},%s\n' "$ip" "${line:1}"
+            print_status_line "" "${line:1}"
             ;;
         ',['*)
-            ip=$(public_ip | json_escape)
             # city=$(public_city | json_escape)
             # City lookup is kept available, but not shown in the bar.
             # printf ',[{"name":"public_ip","full_text":"Public IP: %s"},{"name":"public_city","full_text":"City: %s"},%s\n' "$ip" "$city" "${line:2}"
-            printf ',[{"name":"public_ip","full_text":"Public IP: %s"},%s\n' "$ip" "${line:2}"
+            print_status_line "," "${line:2}"
             ;;
         *)
             printf '%s\n' "$line"
