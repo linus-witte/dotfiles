@@ -160,6 +160,11 @@ in
     "nix-command"
     "flakes"
   ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   services.displayManager.sddm.enable = true;
   services.displayManager.defaultSession = "none+i3";
