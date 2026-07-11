@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgsUnstable,
   pkgsJellyfinMediaPlayer,
   ...
 }:
@@ -58,8 +59,6 @@ let
     delta
     stow
     vim
-    codex
-    neovim
     tmux
     tmux-sessionizer
     gnumake
@@ -73,20 +72,28 @@ let
     vlc
     pkgsJellyfinMediaPlayer.jellyfin-media-player
     freshfetch
-    unityhub
     libreoffice
-    discord
-    jetbrains.rider
     anki
     pawn-appetit
     zathura
-    spotify
     super-productivity
+    handbrake
+  ];
+
+  unstableDevelopmentPackages = with pkgsUnstable; [
+    codex
+    neovim
+  ];
+
+  unstableApplicationPackages = with pkgsUnstable; [
+    unityhub
+    discord
+    jetbrains.rider
+    spotify
     vscode
     proton-vpn
     obsidian
     zoom-us
-    handbrake
   ];
 in
 {
@@ -221,5 +228,11 @@ in
   };
 
   environment.systemPackages =
-    desktopPackages ++ shellPackages ++ networkPackages ++ developmentPackages ++ applicationPackages;
+    desktopPackages
+    ++ shellPackages
+    ++ networkPackages
+    ++ developmentPackages
+    ++ applicationPackages
+    ++ unstableDevelopmentPackages
+    ++ unstableApplicationPackages;
 }
