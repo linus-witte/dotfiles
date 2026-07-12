@@ -81,7 +81,44 @@ let
   ];
 
   unstableDevelopmentPackages = with pkgsUnstable; [
-    codex
+    (stdenvNoCC.mkDerivation {
+      pname = "codex";
+      version = "0.144.1";
+
+      src = fetchurl {
+        url = "https://github.com/openai/codex/releases/download/rust-v0.144.1/codex-x86_64-unknown-linux-musl.tar.gz";
+        hash = "sha256-hAka4gxl/MfUEg25fRvVfX/435x2Cft4HHjC671PWig=";
+      };
+      sourceRoot = ".";
+
+      nativeBuildInputs = [
+        installShellFiles
+        makeWrapper
+      ];
+
+      installPhase = ''
+        runHook preInstall
+        install -Dm755 codex-x86_64-unknown-linux-musl $out/bin/codex
+        wrapProgram $out/bin/codex --prefix PATH : ${
+          lib.makeBinPath [
+            ripgrep
+            bubblewrap
+          ]
+        }
+        installShellCompletion --cmd codex \
+          --bash <($out/bin/codex completion bash) \
+          --fish <($out/bin/codex completion fish) \
+          --zsh <($out/bin/codex completion zsh)
+        runHook postInstall
+      '';
+
+      meta = {
+        description = "Lightweight coding agent that runs in your terminal";
+        homepage = "https://github.com/openai/codex";
+        license = lib.licenses.asl20;
+        mainProgram = "codex";
+      };
+    })
     neovim
   ];
 
