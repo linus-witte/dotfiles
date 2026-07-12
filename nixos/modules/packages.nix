@@ -7,6 +7,17 @@
 }:
 
 let
+  jellyfinMediaPlayer = pkgs.symlinkJoin {
+    name = "jellyfin-media-player-x11";
+    paths = [ pkgsJellyfinMediaPlayer.jellyfin-media-player ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/jellyfinmediaplayer \
+        --set QT_QPA_PLATFORM xcb \
+        --set QT_XCB_GL_INTEGRATION xcb_glx
+    '';
+  };
+
   desktopPackages = with pkgs; [
     flameshot
     kitty
@@ -70,7 +81,7 @@ let
   applicationPackages = with pkgs; [
     firefox
     vlc
-    pkgsJellyfinMediaPlayer.jellyfin-media-player
+    jellyfinMediaPlayer
     freshfetch
     libreoffice
     anki

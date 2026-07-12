@@ -7,6 +7,7 @@
     ./i3.nix
     ./hyprland.nix
     ./modules/desktop.nix
+    ./modules/gaming.nix
     ./modules/packages.nix
     ./modules/services.nix
   ];
