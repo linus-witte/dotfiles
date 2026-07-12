@@ -8,10 +8,11 @@
   ],
   "modules-center": [],
   "modules-right": [
-    "custom/public_ip",
+    "custom/sleep_delay",
     "network",
     "custom/vpn",
-    "disk",
+    "disk#root",
+    "disk#shared",
     "cpu",
     "memory",
     "pulseaudio",
@@ -23,19 +24,18 @@
     "format": "{name}",
     "persistent-workspaces": {
       "DP-2": [11],
-      "DP-3": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       "HDMI-A-1": [12]
     }
   },
-  "custom/public_ip": {
-    "exec": "bash ~/.config/waybar/public_ip.sh",
-    "interval": 60,
+  "custom/sleep_delay": {
+    "exec": "bash ~/.config/i3status/sleep_delay.sh waybar",
+    "interval": 1,
     "return-type": "json"
   },
   "network": {
-    "format-wifi": "W: {essid} {ipaddr}",
-    "format-ethernet": "E: {ipaddr}",
-    "format-disconnected": "E/W: down",
+    "format-wifi": "wifi: {essid} {ipaddr}",
+    "format-ethernet": "eth: {ipaddr}",
+    "format-disconnected": "eth: down",
     "tooltip-format": "{ifname}"
   },
   "custom/vpn": {
@@ -43,30 +43,33 @@
     "interval": 5,
     "return-type": "json"
   },
-  "disk": {
+  "disk#root": {
     "path": "/",
-    "format": "{free}"
+    "format": "os: {free}"
+  },
+  "disk#shared": {
+    "path": "/mnt/shared",
+    "format": "shared: {free}"
   },
   "cpu": {
-    "format": "{load}"
+    "format": "load: {load}"
   },
   "memory": {
-    "format": "{used:0.1f}G | {avail:0.1f}G",
+    "format": "ram: {used:0.1f}/{avail:0.1f} GB",
     "states": {
       "warning": 85,
       "critical": 95
     }
   },
   "pulseaudio": {
-    "format": "VOL: {volume}%",
-    "format-muted": "VOL: muted"
+    "format": "vol: {volume}%",
+    "format-muted": "vol: muted"
   },
   "battery": {
-    "format": "{capacity}% {time}",
-    "format-charging": "CHR {capacity}% {time}",
-    "format-plugged": "AC {capacity}%",
-    "format-full": "FULL",
-    "format-alt": "{capacity}%"
+    "format": "bat: BAT {capacity}% {time}",
+    "format-charging": "bat: CHR {capacity}% {time}",
+    "format-plugged": "bat: FULL {capacity}%",
+    "format-full": "bat: FULL {capacity}%"
   },
   "clock": {
     "interval": 1,

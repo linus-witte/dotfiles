@@ -13,10 +13,11 @@ why="i3-sleep-delay"
 
 usage() {
     cat <<EOF
-Usage: ${0##*/} [status|prompt [minutes]|clear|help]
+Usage: ${0##*/} [status|waybar|prompt [minutes]|clear|help]
 
 Commands:
   status            Print i3bar JSON only while sleep inhibition is active.
+  waybar             Print Waybar JSON for the current sleep inhibition state.
   prompt [minutes]  Enable sleep inhibition for minutes, or prompt on a TTY.
   clear             Clear the active sleep inhibition.
   help              Show this help.
@@ -68,6 +69,17 @@ status() {
     if remaining=$(remaining_seconds); then
         minutes=$(((remaining + 59) / 60))
         printf '{"name":"sleep_delay","full_text":"sleep: inhibit %sm","color":"#a3be8c"}\n' "$minutes"
+    fi
+}
+
+waybar_status() {
+    local remaining minutes
+
+    if remaining=$(remaining_seconds); then
+        minutes=$(((remaining + 59) / 60))
+        printf '{"text":"sleep: inhibit %sm","class":"active"}\n' "$minutes"
+    else
+        printf '{"text":"","class":"inactive"}\n'
     fi
 }
 
@@ -132,6 +144,9 @@ prompt() {
 case "${1:-status}" in
     status|block)
         status
+        ;;
+    waybar)
+        waybar_status
         ;;
     prompt)
         prompt "${2:-}"

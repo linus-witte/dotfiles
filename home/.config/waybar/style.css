@@ -29,10 +29,11 @@ window#waybar {
     background: #900000;
 }
 
-#custom-public_ip,
+#custom-sleep_delay,
 #network,
 #custom-vpn,
-#disk,
+#disk.root,
+#disk.shared,
 #cpu,
 #memory,
 #pulseaudio,
@@ -40,6 +41,10 @@ window#waybar {
 #clock,
 #tray {
     padding: 0 5px;
+}
+
+#custom-sleep_delay {
+    color: #a3be8c;
 }
 
 #memory.warning {
