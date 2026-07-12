@@ -13,7 +13,7 @@ Install the NixOS config first so required tools such as `git`, `stow`, `tmux`,
 `zsh`, and desktop utilities are available before linking user configs.
 
 ```sh
-sudo nixos-rebuild switch --flake path:$HOME/dotfiles/nixos#nixos
+nixos-rebuild switch --sudo --flake path:$HOME/dotfiles/nixos#nixos
 ```
 
 ```sh
