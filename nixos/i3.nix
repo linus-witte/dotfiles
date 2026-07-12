@@ -3,7 +3,6 @@
 {
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
