@@ -60,7 +60,7 @@
     options = "--delete-older-than 30d";
   };
 
-  # Prevent systemd from auto-activating the stale GPT swap partition.
+  # Activate only swap devices declared in hardware-configuration.nix.
   systemd.generators.systemd-gpt-auto-generator = "/dev/null";
 
 }
