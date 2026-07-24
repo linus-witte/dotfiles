@@ -6,6 +6,7 @@
     ./filesystems.nix
     ./i3.nix
     ./hyprland.nix
+    ./plasma.nix
     ./modules/desktop.nix
     ./modules/gaming.nix
     ./modules/packages.nix
