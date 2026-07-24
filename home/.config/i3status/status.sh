@@ -77,6 +77,46 @@ sleep_delay_block() {
     fi
 }
 
+swap_block() {
+    awk '
+        $1 == "SwapTotal:" { total = $2 }
+        $1 == "SwapFree:" { free = $2 }
+        END {
+            if (total <= 0) {
+                printf "{\"name\":\"swap\",\"full_text\":\"swap: inactive\"}"
+                exit
+            }
+
+            used = total - free
+            split("KB MB GB TB", units, " ")
+            divisor = 1
+            unit = 1
+            while (total / divisor >= 1024 && unit < 4) {
+                divisor *= 1024
+                unit++
+            }
+
+            printf "{\"name\":\"swap\",\"full_text\":\"swap: %.1f/%.1f %s\"}", \
+                used / divisor, total / divisor, units[unit]
+        }
+    ' /proc/meminfo
+}
+
+insert_swap_block() {
+    local rest="$1"
+    local marker='{"name":"volume"'
+    local prefix suffix swap
+
+    swap=$(swap_block)
+    if [[ "$rest" == *"$marker"* ]]; then
+        prefix=${rest%%"$marker"*}
+        suffix=${rest#*"$marker"}
+        printf '%s%s,%s%s' "$prefix" "$swap" "$marker" "$suffix"
+    else
+        printf '%s' "$rest"
+    fi
+}
+
 extra_blocks() {
     local sleep_block
 
@@ -92,6 +132,7 @@ print_status_line() {
     local rest="$2"
     local blocks
 
+    rest=$(insert_swap_block "$rest")
     blocks=$(extra_blocks)
     if [[ -z "$blocks" ]]; then
         printf '%s[%s\n' "$prefix" "$rest"
