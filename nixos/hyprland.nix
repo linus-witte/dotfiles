@@ -10,7 +10,11 @@
 
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
+    grim
     rofi
+    satty
+    slurp
     waybar
+    wl-clipboard
   ];
 }
