@@ -111,6 +111,8 @@ let
     zathura
     super-productivity
     handbrake
+    mattermost-desktop
+    zotero
   ];
 
   unstableDevelopmentPackages = with pkgsUnstable; [
