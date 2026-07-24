@@ -7,6 +7,28 @@
 }:
 
 let
+  superProductivityMcp = pkgsUnstable.buildNpmPackage rec {
+    pname = "super-productivity-mcp";
+    version = "1.3.3";
+
+    src = pkgsUnstable.fetchFromGitHub {
+      owner = "b0x42";
+      repo = "Super-Productivity-MCP";
+      rev = "v${version}";
+      hash = "sha256-Gs2Ft9YgSTHLDbTnUbOknCOeXB5mTyjOqCxnPIb58X8=";
+    };
+
+    npmDepsHash = "sha256-vTVIyTicmD0mJ1DgyuZqQmu6TzBeiY6q50zkvs5bKoo=";
+    nativeBuildInputs = [ pkgsUnstable.zip ];
+
+    meta = {
+      description = "MCP server for Super Productivity";
+      homepage = "https://github.com/b0x42/Super-Productivity-MCP";
+      license = lib.licenses.mit;
+      mainProgram = "super-productivity-mcp";
+    };
+  };
+
   jellyfinMediaPlayer = pkgs.symlinkJoin {
     name = "jellyfin-media-player-x11";
     paths = [ pkgsJellyfinMediaPlayer.jellyfin-media-player ];
@@ -92,6 +114,7 @@ let
   ];
 
   unstableDevelopmentPackages = with pkgsUnstable; [
+    superProductivityMcp
     (stdenvNoCC.mkDerivation {
       pname = "codex";
       version = "0.144.1";
