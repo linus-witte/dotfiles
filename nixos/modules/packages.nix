@@ -176,6 +176,7 @@ in
   };
 
   environment.shellAliases = {
+    nfu = "nix flake update --flake path:$HOME/dotfiles/nixos";
     nrb = "(cd $HOME/dotfiles/nixos && nixos-rebuild build --flake path:$HOME/dotfiles/nixos#nixos && result/sw/bin/nvd diff /run/current-system result && nixos-rebuild switch --sudo --no-reexec --store-path $(readlink -f result))";
     sleep-inhibit = "$HOME/.config/i3status/sleep_delay.sh prompt";
   };
