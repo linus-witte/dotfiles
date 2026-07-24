@@ -180,6 +180,13 @@ in
     sleep-inhibit = "$HOME/.config/i3status/sleep_delay.sh prompt";
   };
 
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-backgroundremoval
+    ];
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestions.enable = true;
