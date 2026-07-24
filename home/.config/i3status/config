@@ -50,6 +50,7 @@ disk "/mnt/shared" {
 
 load {
         format = "load: %1min"
+        max_threshold = 24
 }
 
 memory {
